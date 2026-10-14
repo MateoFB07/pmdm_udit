@@ -6,12 +6,11 @@
 **RA vinculado:** RA1 y RA2 · Interfaces adaptables y limitaciones del dispositivo
 
 ## 📱 Producto Final (Capturas)
-*(Añade debajo las dos capturas de pantalla de la aplicación de recambios en ejecución: una en el emulador de MÓVIL en vertical, y otra en el emulador de TABLET o móvil en horizontal, demostrando que la cuadrícula se adapta).*
 
-*(Guarda tus capturas en la carpeta `img/capturas/` y enlázalas así: `![Móvil](img/capturas/movil.png)`).*
+<img width="1344" height="2992" alt="Screenshot_20261014_210102" src="https://github.com/user-attachments/assets/7a334ee1-9216-4030-85b9-b8929ce1d2b7" />
 
-![Móvil](img/capturas/movil.png)
-![Tablet](img/capturas/tablet.png)
+<img width="2560" height="1600" alt="Screenshot_20261014_210008" src="https://github.com/user-attachments/assets/59388894-cd93-4d8e-86b1-93dbfd140a2f" />
+
 
 ### Esquema de referencia
 Así se comporta la cuadrícula del catálogo de recambios: mismas tarjetas, mismo código, más columnas según el ancho disponible en pantalla.
