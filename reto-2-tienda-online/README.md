@@ -12,12 +12,6 @@
 <img width="2560" height="1600" alt="Screenshot_20261014_210008" src="https://github.com/user-attachments/assets/59388894-cd93-4d8e-86b1-93dbfd140a2f" />
 
 
-### Esquema de referencia
-Así se comporta la cuadrícula del catálogo de recambios: mismas tarjetas, mismo código, más columnas según el ancho disponible en pantalla.
-
-<img width="1600" height="900" alt="esquema-responsive" src="https://github.com/user-attachments/assets/832dc131-1c4e-4b27-96c2-57ff28221e5d" />
-
-
 ## 🎯 Objetivo del reto
 Comprender la fragmentación de pantallas en Android y resolver los problemas de visualización en distintos perfiles de dispositivos. Pasar de un diseño estático (una lista infinita que se deforma) a una interfaz *responsive* (una cuadrícula inteligente) utilizando componentes de Jetpack Compose que calculan el espacio disponible en tiempo real.
 
