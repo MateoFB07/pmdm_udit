@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="azul">#315EFB</color>
+    <color name="borde">#DCE4EF</color>
+    <color name="fondo">#F3F6FA</color>
+    <color name="gris_boton">#64748B</color>
+    <color name="rojo">#C43D4B</color>
+    <color name="tarjeta">#FFFFFF</color>
+    <color name="texto_principal">#172B4D</color>
+    <color name="texto_secundario">#5B6B82</color>
+    <color name="verde">#138A62</color>
+    <style name="Theme.FiltroLlamadas" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">@color/azul</item>
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/fondo</item>
+        <item name="android:navigationBarColor">@color/fondo</item>
+    </style>
+</resources>

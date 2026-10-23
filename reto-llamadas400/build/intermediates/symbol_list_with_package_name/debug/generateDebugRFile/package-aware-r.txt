@@ -1,0 +1,20 @@
+com.example.filtro400
+color azul
+color borde
+color fondo
+color gris_boton
+color rojo
+color tarjeta
+color texto_principal
+color texto_secundario
+color verde
+drawable fondo_campo
+drawable fondo_tarjeta
+id btnBloquear400
+id btnBloquearNumero
+id btnDesbloquearNumero
+id btnMasOpciones
+id etNuevoPrefijo
+id tvEstado
+layout activity_main
+style Theme_FiltroLlamadas
