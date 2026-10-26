@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/fondo_menu"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Más opciones"
+        android:textColor="@color/texto_principal"
+        android:textSize="23sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="16dp"
+        android:text="Herramientas para personalizar tu filtro."
+        android:textColor="@color/texto_secundario"
+        android:textSize="13sp" />
+
+    <LinearLayout
+        android:id="@+id/opcionAnadir"
+        style="@style/MenuOption">
+        <TextView style="@style/MenuOptionTitle" android:text="Añadir regla" />
+        <TextView style="@style/MenuOptionSubtitle" android:text="Crear un prefijo o permitir un número" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/opcionReglas"
+        style="@style/MenuOption">
+        <TextView style="@style/MenuOptionTitle" android:text="Ver reglas" />
+        <TextView style="@style/MenuOptionSubtitle" android:text="Consultar y editar tus reglas guardadas" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/opcionProbar"
+        style="@style/MenuOption">
+        <TextView style="@style/MenuOptionTitle" android:text="Probar una llamada" />
+        <TextView style="@style/MenuOptionSubtitle" android:text="Simular cómo respondería el filtro" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/opcionHistorial"
+        style="@style/MenuOption">
+        <TextView style="@style/MenuOptionTitle" android:text="Estadísticas e historial" />
+        <TextView style="@style/MenuOptionSubtitle" android:text="Revisar bloqueos y actividad reciente" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/opcionImportar"
+        style="@style/MenuOption">
+        <TextView style="@style/MenuOptionTitle" android:text="Importar lista CSV" />
+        <TextView style="@style/MenuOptionSubtitle" android:text="Cargar reglas desde un archivo" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/opcionExportar"
+        style="@style/MenuOptionLast">
+        <TextView style="@style/MenuOptionTitle" android:text="Exportar lista CSV" />
+        <TextView style="@style/MenuOptionSubtitle" android:text="Guardar tus reglas en un archivo" />
+    </LinearLayout>
+</LinearLayout>

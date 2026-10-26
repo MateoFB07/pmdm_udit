@@ -3,8 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fondo"
+    android:clipToPadding="false"
     android:fillViewport="true"
-    android:padding="20dp">
+    android:paddingStart="22dp"
+    android:paddingTop="28dp"
+    android:paddingEnd="22dp"
+    android:paddingBottom="32dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,83 +18,191 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Filtro de llamadas"
-            android:textColor="@color/texto_principal"
-            android:textSize="28sp"
+            android:background="@drawable/fondo_etiqueta"
+            android:letterSpacing="0.08"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
+            android:text="TU LÍNEA · TUS REGLAS"
+            android:textColor="@color/azul"
+            android:textSize="11sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvEstado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Menos ruido.\nMás tranquilidad."
+            android:textColor="@color/texto_principal"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:layout_marginBottom="24dp"
-            android:text="Estado del filtro"
+            android:text="Controla las llamadas que llegan a tu móvil."
             android:textColor="@color/texto_secundario"
-            android:textSize="16sp" />
-
-        <Button
-            android:id="@+id/btnBloquear400"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:backgroundTint="@color/verde"
-            android:text="Activar bloqueo del 400"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textSize="16sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:text="Bloquear o desbloquear un número"
-            android:textColor="@color/texto_principal"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/etNuevoPrefijo"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/fondo_campo"
-            android:hint="Ejemplo: +34 600123456"
-            android:inputType="phone"
-            android:maxLines="1"
-            android:paddingHorizontal="16dp"
-            android:textSize="17sp" />
+            android:textSize="15sp"
+            android:lineSpacingExtra="3dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+            android:background="@drawable/fondo_hero"
+            android:elevation="3dp"
+            android:orientation="vertical"
+            android:padding="22dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.08"
+                android:text="PROTECCIÓN ANTISPAM"
+                android:textColor="@color/hero_texto_suave"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Prefijo 400"
+                android:textColor="@android:color/white"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvEstado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="18dp"
+                android:lineSpacingExtra="3dp"
+                android:text="Estado del filtro"
+                android:textColor="@color/hero_texto_suave"
+                android:textSize="14sp" />
 
             <Button
-                android:id="@+id/btnBloquearNumero"
-                android:layout_width="0dp"
-                android:layout_height="54dp"
-                android:layout_marginEnd="6dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/rojo"
-                android:text="Bloquear"
+                android:id="@+id/btnBloquear400"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/boton_primario"
+                android:fontFamily="sans"
+                android:text="Activar bloqueo del 400"
                 android:textAllCaps="false"
-                android:textColor="@android:color/white"
+                android:textColor="@color/hero"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/fondo_tarjeta"
+            android:elevation="1dp"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Control de números"
+                android:textColor="@color/texto_principal"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Bloquéalo o añádelo a tu lista de permitidos."
+                android:textColor="@color/texto_secundario"
+                android:textSize="13sp" />
+
+            <EditText
+                android:id="@+id/etNuevoPrefijo"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:layout_marginTop="17dp"
+                android:background="@drawable/fondo_campo"
+                android:hint="Ejemplo: +34 600123456"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/texto_principal"
+                android:textColorHint="@color/texto_secundario"
                 android:textSize="16sp" />
 
-            <Button
-                android:id="@+id/btnDesbloquearNumero"
-                android:layout_width="0dp"
-                android:layout_height="54dp"
-                android:layout_marginStart="6dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/azul"
-                android:text="Desbloquear"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="16sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnBloquearNumero"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/boton_bloquear"
+                    android:fontFamily="sans"
+                    android:text="Bloquear"
+                    android:textAllCaps="false"
+                    android:textColor="@color/rojo"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnDesbloquearNumero"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/boton_permitir"
+                    android:fontFamily="sans"
+                    android:text="Permitir"
+                    android:textAllCaps="false"
+                    android:textColor="@color/verde"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/fondo_tarjeta"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Llamadas recientes"
+                android:textColor="@color/texto_principal"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="12dp"
+                android:text="Consulta cuáles se bloquearon y cuáles se permitieron."
+                android:textColor="@color/texto_secundario"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:id="@+id/contenedorHistorial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
         </LinearLayout>
 
         <Button

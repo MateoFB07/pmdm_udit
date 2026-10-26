@@ -15,11 +15,14 @@ que el usuario conceda el rol de filtrado desde la propia aplicación.
 - Modificar tipo, número y prioridad de una regla; activar, desactivar o borrar
   reglas pulsando sobre ellas.
 - Guardar reglas e historial localmente en SQLite.
-- Consultar llamadas bloqueadas, reglas aplicadas y las últimas decisiones.
+- Consultar debajo de los botones las cinco llamadas recientes indicando si
+  fueron bloqueadas o permitidas, además de consultar estadísticas e historial.
 - Importar y exportar reglas en CSV con las columnas
   `tipo,valor,activa,prioridad`.
 - Simular una llamada desde la pantalla para probar las reglas sin recibir una
   llamada real.
+- Usar una interfaz renovada con el estado de protección destacado y controles
+  más claros para bloquear o permitir números.
 
 ## Decisiones de funcionamiento
 

@@ -5,6 +5,13 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
+data class LlamadaHistorial(
+    val numero: String,
+    val bloqueada: Boolean,
+    val regla: String,
+    val simulada: Boolean
+)
+
 class BaseDatos(context: Context) :
     SQLiteOpenHelper(context, "filtro_llamadas.db", null, 3) {
 
@@ -218,5 +225,32 @@ class BaseDatos(context: Context) :
             }
         }
         return lineas
+    }
+
+    fun obtenerHistorialReciente(): List<LlamadaHistorial> {
+        val llamadas = mutableListOf<LlamadaHistorial>()
+        val cursor = readableDatabase.query(
+            "historial",
+            arrayOf("numero", "decision", "regla", "simulada"),
+            null,
+            null,
+            null,
+            null,
+            "fecha DESC",
+            "5"
+        )
+        cursor.use {
+            while (it.moveToNext()) {
+                llamadas.add(
+                    LlamadaHistorial(
+                        numero = it.getString(0),
+                        bloqueada = it.getString(1) == "BLOQUEADA",
+                        regla = it.getString(2),
+                        simulada = it.getInt(3) == 1
+                    )
+                )
+            }
+        }
+        return llamadas
     }
 }

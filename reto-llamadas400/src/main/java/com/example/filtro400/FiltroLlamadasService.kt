@@ -35,6 +35,10 @@ class FiltroLlamadasService : CallScreeningService() {
             val baseDatosHistorial = BaseDatos(applicationContext)
             try {
                 baseDatosHistorial.registrarDecision(numeroParaRegistro, resultado)
+                sendBroadcast(
+                    android.content.Intent(ACTION_HISTORIAL_ACTUALIZADO)
+                        .setPackage(packageName)
+                )
             } finally {
                 baseDatosHistorial.close()
             }
@@ -66,5 +70,7 @@ class FiltroLlamadasService : CallScreeningService() {
     companion object {
         const val PREFERENCIAS = "filtro_llamadas"
         const val FILTRO_ACTIVO = "filtro_activo"
+        const val ACTION_HISTORIAL_ACTUALIZADO =
+            "com.example.filtro400.ACTION_HISTORIAL_ACTUALIZADO"
     }
 }

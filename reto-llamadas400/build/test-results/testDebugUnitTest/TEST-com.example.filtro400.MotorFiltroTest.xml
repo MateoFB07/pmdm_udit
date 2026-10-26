@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.filtro400.MotorFiltroTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-22T19:04:05.517Z" hostname="MacBook-Air-de-Mateo.local" time="0.016">
+<testsuite name="com.example.filtro400.MotorFiltroTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-26T18:47:24.885Z" hostname="MacBook-Air-de-Mateo.local" time="0.015">
   <properties/>
-  <testcase name="lasReglasDesactivadasNoSeAplican" classname="com.example.filtro400.MotorFiltroTest" time="0.005"/>
+  <testcase name="lasReglasDesactivadasNoSeAplican" classname="com.example.filtro400.MotorFiltroTest" time="0.007"/>
   <testcase name="bloqueaUnNumeroQueEmpiezaPorElPrefijoConfigurado" classname="com.example.filtro400.MotorFiltroTest" time="0.001"/>
-  <testcase name="aIgualPrioridadGanaElNumeroExacto" classname="com.example.filtro400.MotorFiltroTest" time="0.005"/>
+  <testcase name="aIgualPrioridadGanaElNumeroExacto" classname="com.example.filtro400.MotorFiltroTest" time="0.004"/>
   <testcase name="unaPrioridadMayorSeAplicaAntesQueUnaMenor" classname="com.example.filtro400.MotorFiltroTest" time="0.0"/>
   <testcase name="laListaBlancaTienePrioridadSobreLosBloqueos" classname="com.example.filtro400.MotorFiltroTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>

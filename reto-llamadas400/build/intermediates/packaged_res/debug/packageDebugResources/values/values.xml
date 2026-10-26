@@ -1,19 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="azul">#315EFB</color>
-    <color name="borde">#DCE4EF</color>
-    <color name="fondo">#F3F6FA</color>
+    <color name="azul">#D4FF62</color>
+    <color name="azul_suave">#252D1B</color>
+    <color name="borde">#2B3040</color>
+    <color name="fondo">#10121A</color>
     <color name="gris_boton">#64748B</color>
-    <color name="rojo">#C43D4B</color>
-    <color name="tarjeta">#FFFFFF</color>
-    <color name="texto_principal">#172B4D</color>
-    <color name="texto_secundario">#5B6B82</color>
-    <color name="verde">#138A62</color>
+    <color name="hero">#202430</color>
+    <color name="hero_texto_suave">#B8BECE</color>
+    <color name="ic_launcher_background">#10121A</color>
+    <color name="rojo">#FF8799</color>
+    <color name="rojo_suave">#32232A</color>
+    <color name="tarjeta">#191D27</color>
+    <color name="texto_principal">#F5F4F0</color>
+    <color name="texto_secundario">#A3A8B8</color>
+    <color name="verde">#A8E6B0</color>
+    <color name="verde_suave">#202C27</color>
+    <style name="MenuOption">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:background">@drawable/fondo_opcion_menu</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingStart">15dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingEnd">15dp</item>
+        <item name="android:paddingBottom">12dp</item>
+    </style>
+    <style name="MenuOptionLast" parent="MenuOption">
+        <item name="android:layout_marginBottom">0dp</item>
+    </style>
+    <style name="MenuOptionSubtitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:textColor">@color/texto_secundario</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="MenuOptionTitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/texto_principal</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
     <style name="Theme.FiltroLlamadas" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorAccent">@color/azul</item>
+        <item name="alertDialogTheme">@style/Theme.FiltroLlamadas.Dialog</item>
         <item name="android:fontFamily">sans</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightStatusBar">false</item>
         <item name="android:statusBarColor">@color/fondo</item>
         <item name="android:navigationBarColor">@color/fondo</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowBackground">@color/fondo</item>
+    </style>
+    <style name="Theme.FiltroLlamadas.Dialog" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="colorAccent">@color/azul</item>
+        <item name="android:colorBackground">@color/tarjeta</item>
+        <item name="android:textColorPrimary">@color/texto_principal</item>
+        <item name="android:textColorSecondary">@color/texto_secundario</item>
+        <item name="android:windowBackground">@drawable/fondo_menu</item>
     </style>
 </resources>

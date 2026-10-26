@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:2:1-29:12
-INJECTED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:2:1-29:12
-INJECTED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:2:1-29:12
-INJECTED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:2:1-29:12
+ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:2:1-31:12
+INJECTED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:2:1-31:12
+INJECTED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:2:1-31:12
+INJECTED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:2:1-31:12
 MERGED from [androidx.appcompat:appcompat-resources:1.7.1] /Users/mateofernandezblasco/.gradle/caches/9.6.0/transforms/a9ffc624b8a1dbaadf4979f1b60fd90c/transformed/appcompat-resources-1.7.1/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.appcompat:appcompat:1.7.1] /Users/mateofernandezblasco/.gradle/caches/9.6.0/transforms/136ec9dd66d54ea011d3bdf7396f9306/transformed/appcompat-1.7.1/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.fragment:fragment:1.5.4] /Users/mateofernandezblasco/.gradle/caches/9.6.0/transforms/d4e50966dd8566a1efab16a9488cd57e/transformed/fragment-1.5.4/AndroidManifest.xml:17:1-24:12
@@ -42,8 +42,8 @@ MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/mateofernandezblasco/
 	xmlns:android
 		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:2:11-69
 application
-ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:3:5-28:19
-INJECTED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:3:5-28:19
+ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:3:5-30:19
+INJECTED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:3:5-30:19
 MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/mateofernandezblasco/.gradle/caches/9.6.0/transforms/e05ae25ecf601053a3fbb1e48060b08f/transformed/emoji2-1.3.0/AndroidManifest.xml:23:5-33:19
 MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/mateofernandezblasco/.gradle/caches/9.6.0/transforms/e05ae25ecf601053a3fbb1e48060b08f/transformed/emoji2-1.3.0/AndroidManifest.xml:23:5-33:19
 MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/mateofernandezblasco/.gradle/caches/9.6.0/transforms/eeafc57a6c39f497df99377200017164/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:23:5-33:19
@@ -61,45 +61,49 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/mate
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.13.0] /Users/mateofernandezblasco/.gradle/caches/9.6.0/transforms/4ce1a990677216072422e59e1a279d8b/transformed/core-1.13.0/AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:6:9-35
+		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:8:9-35
 	android:label
+		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:6:9-43
+	android:roundIcon
+		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:7:9-54
+	android:icon
 		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:5:9-43
 	android:allowBackup
 		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:4:9-35
 	android:theme
-		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:7:9-52
+		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:9:9-52
 activity#com.example.filtro400.MainActivity
-ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:9:9-17:20
+ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:11:9-19:20
 	android:windowSoftInputMode
-		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:12:13-73
+		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:14:13-73
 	android:exported
-		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:11:13-36
+		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:13:13-36
 	android:name
-		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:10:13-41
+		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:12:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:13:13-16:29
+ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:15:13-18:29
 action#android.intent.action.MAIN
-ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:14:17-69
+ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:16:17-69
 	android:name
-		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:14:25-66
+		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:16:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:15:17-77
+ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:17:17-77
 	android:name
-		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:15:27-74
+		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:17:27-74
 service#com.example.filtro400.FiltroLlamadasService
-ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:19:9-26:19
+ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:21:9-28:19
 	android:exported
-		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:22:13-36
+		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:24:13-36
 	android:permission
-		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:21:13-75
+		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:23:13-75
 	android:name
-		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:20:13-50
+		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:22:13-50
 intent-filter#action:name:android.telecom.CallScreeningService
-ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:23:13-25:29
+ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:25:13-27:29
 action#android.telecom.CallScreeningService
-ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:24:17-79
+ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:26:17-79
 	android:name
-		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:24:25-76
+		ADDED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml:26:25-76
 uses-sdk
 INJECTED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/mateofernandezblasco/Documents/PMDM/reto-llamadas400/AndroidManifest.xml

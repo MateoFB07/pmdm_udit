@@ -1,7 +1,11 @@
 package com.example.filtro400
 
 import android.app.role.RoleManager
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -28,7 +32,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnBloquearNumero: Button
     private lateinit var btnDesbloquearNumero: Button
     private lateinit var btnMasOpciones: Button
+    private lateinit var contenedorHistorial: LinearLayout
     private lateinit var baseDatos: BaseDatos
+    private var receptorHistorialRegistrado = false
+
+    private val receptorHistorial = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            if (intent.action == FiltroLlamadasService.ACTION_HISTORIAL_ACTUALIZADO) {
+                actualizarHistorialUi()
+            }
+        }
+    }
 
     private val solicitarRolFiltro = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -66,6 +80,7 @@ class MainActivity : AppCompatActivity() {
         btnBloquearNumero = findViewById(R.id.btnBloquearNumero)
         btnDesbloquearNumero = findViewById(R.id.btnDesbloquearNumero)
         btnMasOpciones = findViewById(R.id.btnMasOpciones)
+        contenedorHistorial = findViewById(R.id.contenedorHistorial)
 
         btnBloquear400.setOnClickListener { alternarBloqueo400() }
         btnBloquearNumero.setOnClickListener { guardarNumeroExacto(TipoRegla.NUMERO_BLOQUEADO) }
@@ -73,34 +88,32 @@ class MainActivity : AppCompatActivity() {
         btnMasOpciones.setOnClickListener { mostrarMasOpciones() }
 
         actualizarEstadoUi()
+        actualizarHistorialUi()
     }
 
     private fun mostrarMasOpciones() {
-        val filtroActivo = getSharedPreferences(FiltroLlamadasService.PREFERENCIAS, MODE_PRIVATE)
-            .getBoolean(FiltroLlamadasService.FILTRO_ACTIVO, false)
-        val opciones = arrayOf(
-            "Añadir prefijo o lista blanca",
-            "Gestionar reglas",
-            "Probar una llamada",
-            "Ver estadísticas e historial",
-            "Importar lista CSV",
-            "Exportar lista CSV",
-            if (filtroActivo) "Desactivar filtro de llamadas" else "Activar filtro de llamadas"
+        val contenido = layoutInflater.inflate(R.layout.dialog_more_options, null)
+        val dialogo = AlertDialog.Builder(this)
+            .setView(contenido)
+            .create()
+
+        val acciones = listOf(
+            R.id.opcionAnadir to { mostrarDialogoTipoRegla() },
+            R.id.opcionReglas to { mostrarReglas() },
+            R.id.opcionProbar to { mostrarDialogoSimulacion() },
+            R.id.opcionHistorial to { mostrarEstadisticas() },
+            R.id.opcionImportar to { abrirCsv.launch(arrayOf("text/*", "application/*")) },
+            R.id.opcionExportar to { crearCsv.launch("reglas_filtro.csv") }
         )
-        androidx.appcompat.app.AlertDialog.Builder(this)
-            .setTitle("Más opciones")
-            .setItems(opciones) { _, seleccion ->
-                when (seleccion) {
-                    0 -> mostrarDialogoTipoRegla()
-                    1 -> mostrarReglas()
-                    2 -> mostrarDialogoSimulacion()
-                    3 -> mostrarEstadisticas()
-                    4 -> abrirCsv.launch(arrayOf("text/*", "application/*"))
-                    5 -> crearCsv.launch("reglas_filtro.csv")
-                    6 -> if (filtroActivo) desactivarFiltro() else activarFiltro()
-                }
+        acciones.forEach { (id, accion) ->
+            contenido.findViewById<LinearLayout>(id).setOnClickListener {
+                dialogo.dismiss()
+                accion()
             }
-            .show()
+        }
+
+        dialogo.show()
+        dialogo.window?.setBackgroundDrawableResource(android.R.color.transparent)
     }
 
     private fun mostrarReglas() {
@@ -120,6 +133,93 @@ class MainActivity : AppCompatActivity() {
             .setNegativeButton("Cerrar", null)
             .show()
     }
+
+    private fun actualizarHistorialUi() {
+        if (!::contenedorHistorial.isInitialized || !::baseDatos.isInitialized) return
+
+        contenedorHistorial.removeAllViews()
+        val llamadas = baseDatos.obtenerHistorialReciente()
+        if (llamadas.isEmpty()) {
+            val vacio = TextView(this).apply {
+                text = "Aquí aparecerán las llamadas cuando el filtro registre actividad."
+                setTextColor(getColor(R.color.texto_secundario))
+                textSize = 13f
+                setPadding(dp(14), dp(14), dp(14), dp(14))
+            }
+            contenedorHistorial.addView(vacio)
+            return
+        }
+
+        llamadas.forEachIndexed { indice, llamada ->
+            val fila = LinearLayout(this).apply {
+                orientation = LinearLayout.VERTICAL
+                background = getDrawable(R.drawable.fondo_opcion_menu)
+                setPadding(dp(14), dp(12), dp(14), dp(12))
+            }
+            val encabezado = LinearLayout(this).apply {
+                orientation = LinearLayout.HORIZONTAL
+                gravity = android.view.Gravity.CENTER_VERTICAL
+            }
+            val numero = TextView(this).apply {
+                text = llamada.numero
+                setTextColor(getColor(R.color.texto_principal))
+                textSize = 15f
+                setTypeface(typeface, android.graphics.Typeface.BOLD)
+                maxLines = 1
+                ellipsize = android.text.TextUtils.TruncateAt.END
+            }
+            encabezado.addView(
+                numero,
+                LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+            )
+
+            val estado = TextView(this).apply {
+                text = if (llamada.bloqueada) "Bloqueada" else "Permitida"
+                setTextColor(
+                    getColor(if (llamada.bloqueada) R.color.rojo else R.color.verde)
+                )
+                textSize = 11f
+                setTypeface(typeface, android.graphics.Typeface.BOLD)
+                background = GradientDrawable().apply {
+                    setColor(
+                        getColor(if (llamada.bloqueada) R.color.rojo_suave else R.color.verde_suave)
+                    )
+                    cornerRadius = dp(50).toFloat()
+                }
+                setPadding(dp(10), dp(6), dp(10), dp(6))
+            }
+            encabezado.addView(estado)
+            fila.addView(encabezado)
+
+            val detalle = TextView(this).apply {
+                text = buildString {
+                    append(llamada.regla)
+                    if (llamada.simulada) append(" · Simulación")
+                }
+                setTextColor(getColor(R.color.texto_secundario))
+                textSize = 12f
+                maxLines = 1
+                ellipsize = android.text.TextUtils.TruncateAt.END
+                val margen = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                )
+                margen.topMargin = dp(5)
+                layoutParams = margen
+            }
+            fila.addView(detalle)
+
+            val margen = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            if (indice > 0) margen.topMargin = dp(8)
+            contenedorHistorial.addView(fila, margen)
+        }
+    }
+
+    private fun dp(valor: Int): Int =
+        (valor * resources.displayMetrics.density).toInt()
 
     private fun activarFiltro() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -253,6 +353,7 @@ class MainActivity : AppCompatActivity() {
                 if (valorValido(numero)) {
                     val resultado = MotorFiltro.evaluar(numero, baseDatos.obtenerReglas())
                     baseDatos.registrarDecision(numero, resultado, simulada = true)
+                    actualizarHistorialUi()
                     val accion = if (resultado.bloquear) "BLOQUEADA" else "PERMITIDA"
                     Toast.makeText(this, "$accion. Motivo: ${resultado.reglaAplicada}", Toast.LENGTH_LONG).show()
                 } else {
@@ -510,9 +611,32 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
+    override fun onStart() {
+        super.onStart()
+        val filtro = IntentFilter(FiltroLlamadasService.ACTION_HISTORIAL_ACTUALIZADO)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            registerReceiver(receptorHistorial, filtro, Context.RECEIVER_NOT_EXPORTED)
+        } else {
+            @Suppress("DEPRECATION")
+            registerReceiver(receptorHistorial, filtro)
+        }
+        receptorHistorialRegistrado = true
+    }
+
+    override fun onStop() {
+        if (receptorHistorialRegistrado) {
+            unregisterReceiver(receptorHistorial)
+            receptorHistorialRegistrado = false
+        }
+        super.onStop()
+    }
+
     override fun onResume() {
         super.onResume()
-        if (::baseDatos.isInitialized && ::tvEstado.isInitialized) actualizarEstadoUi()
+        if (::baseDatos.isInitialized && ::tvEstado.isInitialized) {
+            actualizarEstadoUi()
+            actualizarHistorialUi()
+        }
     }
 
 }

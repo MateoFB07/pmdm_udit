@@ -1,18 +1,62 @@
 [
     {
-        "merged": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-debug-22:/layout_activity_main.xml.flat",
-        "source": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-reto-llamadas400-23:/layout/activity_main.xml"
-    },
-    {
-        "merged": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-debug-22:/drawable_fondo_campo.xml.flat",
-        "source": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-reto-llamadas400-23:/drawable/fondo_campo.xml"
+        "merged": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-debug-22:/drawable_fondo_menu.xml.flat",
+        "source": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-reto-llamadas400-23:/drawable/fondo_menu.xml"
     },
     {
         "merged": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-debug-22:/drawable_fondo_tarjeta.xml.flat",
         "source": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-reto-llamadas400-23:/drawable/fondo_tarjeta.xml"
     },
     {
+        "merged": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-debug-22:/drawable_fondo_etiqueta.xml.flat",
+        "source": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-reto-llamadas400-23:/drawable/fondo_etiqueta.xml"
+    },
+    {
+        "merged": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-debug-22:/drawable_boton_permitir.xml.flat",
+        "source": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-reto-llamadas400-23:/drawable/boton_permitir.xml"
+    },
+    {
         "merged": "com.example.filtro400-debug-22:/layout_activity_main.xml.flat",
         "source": "com.example.filtro400-reto-llamadas400-23:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-debug-22:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-reto-llamadas400-23:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-debug-22:/layout_dialog_more_options.xml.flat",
+        "source": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-reto-llamadas400-23:/layout/dialog_more_options.xml"
+    },
+    {
+        "merged": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-debug-22:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-reto-llamadas400-23:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-debug-22:/layout_activity_main.xml.flat",
+        "source": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-reto-llamadas400-23:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-debug-22:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-reto-llamadas400-23:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-debug-22:/drawable_fondo_campo.xml.flat",
+        "source": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-reto-llamadas400-23:/drawable/fondo_campo.xml"
+    },
+    {
+        "merged": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-debug-22:/drawable_fondo_hero.xml.flat",
+        "source": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-reto-llamadas400-23:/drawable/fondo_hero.xml"
+    },
+    {
+        "merged": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-debug-22:/drawable_fondo_opcion_menu.xml.flat",
+        "source": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-reto-llamadas400-23:/drawable/fondo_opcion_menu.xml"
+    },
+    {
+        "merged": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-debug-22:/drawable_boton_primario.xml.flat",
+        "source": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-reto-llamadas400-23:/drawable/boton_primario.xml"
+    },
+    {
+        "merged": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-debug-22:/drawable_boton_bloquear.xml.flat",
+        "source": "/Users/mateofernandezblasco/.gradle/daemon/9.6.0/com.example.filtro400-reto-llamadas400-23:/drawable/boton_bloquear.xml"
     }
 ]
