@@ -1,62 +1,202 @@
-# Filtro de llamadas
+# Filtro de llamadas 400
 
-Aplicación Android en Kotlin para administrar reglas de bloqueo sin reemplazar
-la aplicación de teléfono. El servicio real usa `CallScreeningService` y requiere
-que el usuario conceda el rol de filtrado desde la propia aplicación.
+Aplicación Android desarrollada en Kotlin que utiliza el servicio nativo
+`CallScreeningService` para rechazar llamadas entrantes cuyo número coincide
+con una regla de bloqueo. Incluye una regla inicial para el prefijo `400`,
+gestión local de reglas y un historial de decisiones.
 
-## Funciones
+> **Estado de la demostración:** las pruebas unitarias de la lógica están
+> implementadas. La demostración con llamadas reales debe realizarse en un
+> dispositivo y documentarse con evidencias; una simulación dentro de la
+> aplicación no demuestra que Android haya filtrado una llamada real.
 
-- Crear reglas para bloquear un número exacto o un prefijo, y para permitir
-  números mediante la lista blanca.
-- Activar o desactivar el bloqueo automático del prefijo 400 desde la pantalla.
-- Bloquear o permitir el número escrito en el cuadro principal con los botones
-  específicos; desbloquearlo crea una regla de lista blanca para que prevalezca
-  incluso sobre el prefijo 400.
-- Modificar tipo, número y prioridad de una regla; activar, desactivar o borrar
-  reglas pulsando sobre ellas.
-- Guardar reglas e historial localmente en SQLite.
-- Consultar debajo de los botones las cinco llamadas recientes indicando si
-  fueron bloqueadas o permitidas, además de consultar estadísticas e historial.
-- Importar y exportar reglas en CSV con las columnas
-  `tipo,valor,activa,prioridad`.
-- Simular una llamada desde la pantalla para probar las reglas sin recibir una
-  llamada real.
-- Usar una interfaz renovada con el estado de protección destacado y controles
-  más claros para bloquear o permitir números.
+## Enlaces de entrega
 
-## Decisiones de funcionamiento
+- **APK:** se genera localmente en `build/outputs/apk/debug/filtro400-debug.apk` al compilar el proyecto.
 
-La lista blanca siempre permite el número aunque coincida con una regla de
-bloqueo. Para el resto, se revisa primero la regla activa con mayor prioridad;
-si hay empate, gana el bloqueo de número exacto frente al prefijo. El prefijo
-400 inicial conserva el comportamiento de las fases anteriores. Los números
-con prefijo español `+34` o `0034` se normalizan antes de compararse.
+## Funcionalidades
 
-El servicio responde a Android antes de escribir el historial, para no retrasar
-la llamada por una operación de registro. Si SQLite falla al consultar reglas,
-la llamada se permite y el error queda en el registro de Android. El historial
-se conserva solo en el dispositivo y contiene el número, la decisión, la regla
-y la fecha. Las simulaciones se marcan en el historial y no cuentan como
-bloqueos reales en las estadísticas.
+- Solicita al usuario el rol de filtrado de llamadas de Android y permite
+  activar o desactivar el bloqueo del prefijo `400`.
+- Rechaza una llamada entrante cuando la regla activa que coincide determina
+  que debe bloquearse. Las llamadas que no coinciden se permiten.
+- Normaliza los números eliminando caracteres que no sean dígitos y contempla
+  el prefijo español `+34` y el formato `0034`.
+- Permite crear reglas de prefijo, bloqueo de número exacto y lista blanca.
+  También permite editar, activar, desactivar y eliminar reglas.
+- Da prioridad a la lista blanca. Para las demás reglas aplica primero la de
+  mayor prioridad; en caso de empate, prevalece el bloqueo de número exacto
+  frente a una regla de prefijo.
+- Guarda reglas e historial localmente en SQLite. El historial distingue las
+  simulaciones de las decisiones recibidas por el servicio.
+- Ofrece una comprobación/simulación de números, estadísticas e importación y
+  exportación de reglas CSV (`tipo,valor,activa,prioridad`).
 
-## Compilar y probar
+## Requisitos
 
-Desde esta carpeta:
+- Android Studio con soporte para Kotlin y Gradle.
+- Android 10 (API 29) o posterior, correspondiente al `minSdk` del proyecto.
+- Para filtrar llamadas reales, un dispositivo compatible y el rol
+  `ROLE_CALL_SCREENING` concedido por el usuario. La disponibilidad del
+  filtrado puede depender también de la versión de Android, el fabricante y
+  el operador.
 
-```sh
+## Compilar, instalar y ejecutar pruebas
+
+Desde la carpeta del proyecto:
+
+```bash
 ./gradlew test assembleDebug
 ```
 
-El APK de depuración se genera en
-`build/outputs/apk/debug/filtro400-debug.apk`. Las pruebas unitarias cubren el
-prefijo, la normalización española, la lista blanca, las prioridades y las
-reglas desactivadas. Las llamadas reales requieren un dispositivo compatible y
-el rol de filtrado; no se han validado con una llamada de operador.
+El APK de depuración se encontrará en:
 
-## Dificultades y límites
+```text
+build/outputs/apk/debug/filtro400-debug.apk
+```
 
-Android decide qué llamadas entrega al servicio y puede limitar los números
-disponibles. Por eso se permite el paso cuando el número no está disponible y
-se recomienda comprobar el filtrado real en un dispositivo autorizado. La
-interfaz es intencionadamente sencilla y usa componentes Android básicos para
-que el código sea fácil de mantener y ampliar.
+Para instalarlo en un dispositivo conectado por ADB:
+
+```bash
+adb install -r build/outputs/apk/debug/filtro400-debug.apk
+```
+
+Abre **Filtro de llamadas**, concede el rol cuando Android lo solicite y activa
+el filtro. El servicio no puede intervenir en llamadas reales hasta que el
+usuario haya concedido ese rol.
+
+## Funcionamiento y decisiones técnicas
+
+1. `MainActivity` solicita el rol de filtrado mediante el sistema de roles de
+   Android y guarda el estado de activación del filtro.
+2. Android invoca `FiltroLlamadasService`, una implementación de
+   `CallScreeningService`, cuando una llamada entrante se entrega al servicio.
+3. El servicio obtiene el número disponible, consulta las reglas en SQLite y
+   delega la decisión a `MotorFiltro`.
+4. Si la regla indica bloqueo, el servicio responde a Android rechazando la
+   llamada y omitiendo su notificación. Si no hay regla coincidente, responde
+   permitiéndola.
+5. Después de responder, intenta registrar la decisión en el historial. De
+   este modo, la escritura del historial no retrasa la respuesta de filtrado.
+
+La regla inicial bloquea el prefijo `400`. Por ejemplo, `400123456`,
+`+34 400123456` y `0034 400123456` se normalizan y se comparan con esa regla.
+El prefijo es configurable mediante las reglas de la aplicación.
+
+El filtrado se realiza en el dispositivo: no se envía el número a un servidor
+ni se necesita conexión a Internet para evaluar las reglas. Si el número no
+está disponible, no se puede comparar y la llamada se permite. Si falla la
+consulta de reglas SQLite, la implementación también permite la llamada y
+registra el error en el log de Android, evitando bloquearla por un fallo
+interno.
+
+## Pruebas y evidencias
+
+### Pruebas unitarias
+
+Las pruebas de `MotorFiltroTest` cubren:
+
+- Bloqueo de un número con prefijo `400` y normalización de `+34`.
+- Lista blanca con prioridad sobre el prefijo, incluyendo `0034`.
+- Aplicación de la regla de mayor prioridad.
+- Desempate entre número exacto y prefijo.
+- Ignorar reglas desactivadas.
+
+Ejecutarlas con `./gradlew test`. Estas pruebas verifican la lógica de decisión;
+no simulan el sistema de telefonía ni demuestran que una llamada real se haya
+bloqueado.
+
+### Evidencias que deben añadirse
+
+No se incluyen capturas ni grabación de llamadas reales en este repositorio por
+el momento. Para completar la entrega, añadir evidencias propias, por ejemplo:
+
+| Evidencia | Qué debe mostrar |
+|---|---|
+| `docs/evidencias/pantalla-principal.png` | Aplicación abierta y estado del filtro. |
+| `docs/evidencias/rol-filtrado.png` | Solicitud o estado del rol de filtrado del sistema. |
+| `docs/evidencias/llamada-400-bloqueada.png` | Resultado de una llamada real de prueba cuyo número presentado comienza por 400. |
+| `docs/evidencias/llamada-permitida.png` | Resultado de una llamada real de prueba desde un número que no coincide. |
+| `docs/evidencias/pruebas-unitarias.png` | Resultado de `./gradlew test`. |
+
+Realizar las llamadas de prueba únicamente con líneas y dispositivos autorizados.
+En la grabación de hasta tres minutos, mostrar tanto la llamada bloqueada como
+otra llamada permitida. No presentar el comprobador o la simulación de la app
+como si fueran llamadas reales.
+
+## Reflexión crítica
+
+### 1. ¿Qué es `CallScreeningService` y qué función cumple en Android?
+
+Es una API de Android que permite a una aplicación con el rol adecuado recibir
+detalles de ciertas llamadas entrantes y responder al sistema si deben
+permitirse o rechazarse. Android mantiene el control de la llamada: la
+aplicación no reemplaza a la app Teléfono ni establece directamente la llamada.
+
+### 2. ¿Por qué necesitamos solicitar el rol `ROLE_CALL_SCREENING`?
+
+El rol autoriza a la aplicación a actuar como servicio de filtrado y permite a
+Android dirigirle las llamadas que corresponda. Es una elección explícita del
+usuario y evita que una aplicación filtre llamadas sin su consentimiento. Si
+el usuario no concede o posteriormente revoca el rol, el servicio no podrá
+realizar el filtrado.
+
+### 3. ¿Por qué no necesitamos un servidor externo para realizar el filtrado?
+
+La detección del prefijo y la decisión se hacen localmente con el número
+entregado por Android y las reglas guardadas en SQLite. Un servidor no aporta
+nada necesario para esta regla fija y requeriría enviar datos de llamadas fuera
+del dispositivo. Por ello, esta aplicación no necesita conexión a Internet
+para filtrar.
+
+### 4. ¿Qué ocurre si el número telefónico está guardado en los contactos?
+
+Android puede excluir del filtrado las llamadas de números guardados en
+contactos, salvo que el servicio tenga el permiso de lectura de contactos
+requerido por la plataforma. Esta aplicación no solicita `READ_CONTACTS`; por
+tanto, no se debe asumir que el servicio recibirá para filtrar una llamada de
+un contacto. El comportamiento exacto debe comprobarse en el dispositivo y la
+versión de Android utilizados.
+
+### 5. ¿Qué diferencias existen entre comprobar un número mediante una función y bloquear realmente una llamada?
+
+Comprobar un número ejecuta una función con texto y reglas, y solo informa qué
+decisión tomaría el motor. No interviene en la telefonía. Bloquear realmente
+requiere que Android entregue una llamada entrante al `CallScreeningService`,
+que la aplicación tenga concedido el rol y que el servicio responda a tiempo
+con la instrucción de rechazo. Por eso las pruebas unitarias y simulaciones no
+sustituyen una llamada real de demostración.
+
+### 6. ¿Qué mejoras incorporarías en una futura versión?
+
+- Añadir evidencias automatizadas y una prueba de integración en un dispositivo
+  compatible, además de documentar modelo, versión de Android y condiciones de
+  la llamada.
+- Mejorar la gestión de errores y mostrar claramente si el rol fue revocado o
+  si una llamada no se pudo evaluar.
+- Permitir importar, exportar y hacer copias de seguridad de reglas con
+  validación más detallada.
+- Añadir opciones de privacidad para configurar la conservación y el borrado
+  del historial.
+- Ampliar la accesibilidad y ofrecer una interfaz de edición de reglas más
+  clara.
+
+## Estructura principal
+
+```text
+reto-llamadas400/
+├── AndroidManifest.xml
+├── README.md
+├── res/
+├── src/
+│   ├── main/java/com/example/
+│   │   ├── MotorFiltro.kt
+│   │   ├── Regla.kt
+│   │   └── filtro400/
+│   │       ├── BaseDatos.kt
+│   │       ├── FiltroLlamadasService.kt
+│   │       └── MainActivity.kt
+│   └── test/java/com/example/filtro400/
+│       └── MotorFiltroTest.kt
+└── build.gradle.kts
+```
