@@ -92,6 +92,8 @@ interno.
 
 ## Pruebas y evidencias
 
+<img width="313" height="639" alt="Captura de pantalla 2026-11-05 a las 9 39 19" src="https://github.com/user-attachments/assets/7da650a2-c843-4b8f-a5c2-cb257ad520aa" />
+
 ### Pruebas unitarias
 
 Las pruebas de `MotorFiltroTest` cubren:
